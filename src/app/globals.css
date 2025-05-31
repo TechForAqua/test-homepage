@@ -1,26 +1,279 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colors - Light Mode (Mood Board Colors) */
+  --color-blue: #3b94e4;        /* Mood Board Blue */
+  --color-green: #1fb166;       /* Mood Board Green */
+  
+  /* Neutral Colors - Light Mode */
+  --bg-primary: #FFFFFF;        /* White */
+  --bg-secondary: #F8F9FA;      /* Gray-50 */
+  --bg-tertiary: #F1F3F4;       /* Gray-100 */
+  --text-primary: #000000;      /* Black */
+  --text-secondary: #6B7280;    /* Gray-500 */
+  --text-tertiary: #9CA3AF;     /* Gray-400 */
+  --border-default: rgba(0,0,0,0.08);
+  --border-hover: rgba(0,0,0,0.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  
+  /* Inverted Colors - Light Mode (for Problem/CTA sections) */
+  --bg-inverted: #000000;       /* Black */
+  --text-inverted: #FFFFFF;     /* White */
+  --text-inverted-secondary: #D1D5DB;  /* Gray-300 */
+  --text-inverted-tertiary: #9CA3AF;   /* Gray-400 */
+  
+  /* Grid Pattern - Light Mode (Brighter) */
+  --grid-color: rgba(0,0,0,0.08);
+  
+  /* Component Colors - Light Mode */
+  --badge-blue-bg: rgba(59,148,228,0.1);
+  --badge-blue-border: rgba(59,148,228,0.2);
+  --badge-green-bg: rgba(31,177,102,0.15);
+  --badge-green-border: rgba(31,177,102,0.2);
+  
+  /* Font Families */
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: var(--font-space-mono), 'SF Mono', Consolas, monospace;
+  
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.dark {
+  /* Brand Colors - Dark Mode */
+  --color-blue: #60A5FA;        /* Blue-400 for dark mode */
+  --color-green: #4ADE80;       /* Green-400 for dark mode */
+  
+  /* Neutral Colors - Dark Mode */
+  --bg-primary: #0F0F0F;        /* Neutral-950 */
+  --bg-secondary: #1A1A1A;      /* Neutral-800 */
+  --bg-tertiary: #262626;       /* Neutral-700 */
+  --text-primary: #FAFAFA;      /* Neutral-50 */
+  --text-secondary: #A3A3A3;    /* Gray-400 */
+  --text-tertiary: #737373;     /* Gray-500 */
+  --border-default: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.12);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.5);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.7);
+  
+  /* Inverted Colors - Dark Mode (for Problem/CTA sections) */
+  --bg-inverted: #FFFFFF;       /* White */
+  --text-inverted: #000000;     /* Black */
+  --text-inverted-secondary: #4B5563;  /* Gray-600 */
+  --text-inverted-tertiary: #6B7280;   /* Gray-500 */
+  
+  /* Grid Pattern - Dark Mode (Much Brighter) */
+  --grid-color: rgba(255,255,255,0.08);
+  
+  /* Component Colors - Dark Mode */
+  --badge-blue-bg: rgba(96,165,250,0.1);
+  --badge-blue-border: rgba(96,165,250,0.2);
+  --badge-green-bg: rgba(74,222,128,0.15);
+  --badge-green-border: rgba(74,222,128,0.2);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color var(--duration-normal) var(--ease-out), 
+              color var(--duration-normal) var(--ease-out);
+}
+
+/* Grid Background Pattern */
+.grid-pattern {
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 120px 120px;
+  background-position: -1px -1px;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 16px 32px;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 12px;
+  transition: opacity var(--duration-fast) var(--ease-out);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--text-primary);
+  padding: 15px 28px;
+  font-weight: 500;
+  font-size: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-default);
+  transition: all var(--duration-fast) var(--ease-out);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-secondary:hover {
+  border-color: var(--border-hover);
+  background-color: var(--bg-secondary);
+}
+
+/* Badge Styles */
+.badge-blue {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: var(--badge-blue-bg);
+  color: var(--color-blue);
+  border: 1px solid var(--badge-blue-border);
+}
+
+.badge-green {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  background-color: var(--badge-green-bg);
+  color: var(--color-green);
+  border: 1px solid var(--badge-green-border);
+}
+
+/* Social Proof Dots */
+.social-proof-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.social-proof-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.social-proof-dot:nth-child(1) {
+  background-color: var(--color-blue);
+}
+
+.social-proof-dot:nth-child(2) {
+  background-color: var(--color-green);
+}
+
+.social-proof-dot:nth-child(3) {
+  background-color: var(--text-tertiary);
+}
+
+/* Terminal Styles */
+.terminal {
+  background: #0a0a0a;
+  border-radius: 16px;
+  padding: 24px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e5e5e5;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Text Color Classes */
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.text-blue {
+  color: var(--color-blue);
+}
+
+.text-green {
+  color: var(--color-green);
+}
+
+/* Inverted Color Classes (for Problem/CTA sections) */
+.bg-inverted {
+  background-color: var(--bg-inverted);
+}
+
+.text-inverted {
+  color: var(--text-inverted);
+}
+
+.text-inverted-secondary {
+  color: var(--text-inverted-secondary);
+}
+
+.text-inverted-tertiary {
+  color: var(--text-inverted-tertiary);
+}
+
+/* Utility Classes */
+.text-balance {
+  text-wrap: balance;
+}
+
+.container-padding {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+.section-spacing {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .section-spacing {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-spacing {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
 }
