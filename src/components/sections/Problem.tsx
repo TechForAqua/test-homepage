@@ -50,9 +50,8 @@ const Problem = () => {
 
   return (
     <section
-      id="problem"
       ref={containerRef}
-      className="relative bg-black dark:bg-white text-white dark:text-black overflow-hidden"
+      className="relative bg-neutral-950 dark:bg-black text-white overflow-hidden"
       style={{ height: `${screens.length * 100}vh` }}
     >
       {/* Subtle background pattern - following Hero pattern */}
@@ -67,8 +66,8 @@ const Problem = () => {
             key={index}
             className={`w-3 h-3 rounded-full border-2 transition-all duration-300 mb-6 ${
               index === currentScreen
-                ? "bg-white dark:bg-black border-white dark:border-black"
-                : "bg-transparent border-white/40 dark:border-black/40"
+                ? "bg-white border-white"
+                : "bg-transparent border-white/40"
             }`}
           />
         ))}
@@ -86,10 +85,10 @@ const Problem = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              <h2 className="text-5xl md:text-7xl font-black text-white dark:text-black leading-tight">
+              <h2 className="text-5xl md:text-7xl font-black text-white leading-tight">
                 {screens[0].title}
               </h2>
-              <p className="text-xl md:text-2xl text-gray-300 dark:text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
                 {screens[0].subtitle}
               </p>
             </motion.div>
@@ -104,17 +103,17 @@ const Problem = () => {
               transition={{ duration: 0.8 }}
               className="space-y-8"
             >
-              {/* Large number - Inverted colors */}
-              <div className="text-8xl md:text-9xl font-black text-white dark:text-black">
+              {/* Large number - Pure white, no color */}
+              <div className="text-8xl md:text-9xl font-black text-white">
                 {screens[currentScreen].number}
               </div>
 
               {/* Stat text */}
               <div className="space-y-6">
-                <h3 className="text-2xl md:text-4xl font-bold text-white dark:text-black">
+                <h3 className="text-2xl md:text-4xl font-bold text-white">
                   {screens[currentScreen].text}
                 </h3>
-                <p className="text-lg md:text-xl text-gray-400 dark:text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                   {screens[currentScreen].description}
                 </p>
               </div>
@@ -130,26 +129,20 @@ const Problem = () => {
               className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
             >
               <div className="flex flex-col items-center space-y-3">
-                <span className="text-sm text-gray-400 dark:text-gray-600">
+                <span className="text-sm text-gray-400">
                   Scroll to explore the problem
                 </span>
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
-                  className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center"
+                  className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
                 >
-                  <div className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2" />
+                  <div className="w-1 h-3 bg-gray-400 rounded-full mt-2" />
                 </motion.div>
               </div>
             </motion.div>
           )}
         </div>
-      </div>
-
-      {/* Debug info - temporary */}
-      <div className="fixed bottom-4 left-4 bg-white/10 dark:bg-black/10 text-white dark:text-black p-2 rounded text-xs z-50">
-        Screen: {currentScreen} | Progress:{" "}
-        {Math.round(scrollYProgress.get() * 100)}%
       </div>
     </section>
   );
