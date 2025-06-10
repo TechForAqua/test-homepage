@@ -107,7 +107,7 @@ const Problem = () => {
   }, [currentScreen, isScrolling]);
 
   return (
-    <div ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-black">
+    <div ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-background">
       <div ref={containerRef} className="relative h-full w-full">
         {/* Progress Dots - Contained within the section */}
         <div className="absolute right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-8">
@@ -115,7 +115,7 @@ const Problem = () => {
             <motion.button
               key={index}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentScreen === index ? 'bg-white scale-125' : 'bg-white/30'
+                currentScreen === index ? 'bg-primary scale-125' : 'bg-primary/30'
               }`}
               onClick={() => setCurrentScreen(index)}
               whileHover={{ scale: 1.2 }}
@@ -151,7 +151,7 @@ const Problem = () => {
                 </motion.div>
                 {screens[currentScreen].number && (
                   <motion.div
-                    className="text-6xl font-bold mb-4 text-white"
+                    className="text-6xl font-bold mb-4 text-primary"
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -160,7 +160,7 @@ const Problem = () => {
                   </motion.div>
                 )}
                 <motion.h2 
-                  className="text-4xl md:text-5xl font-bold mb-6 text-white"
+                  className="text-4xl md:text-5xl font-bold mb-6 text-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -168,7 +168,7 @@ const Problem = () => {
                   {screens[currentScreen].title || screens[currentScreen].text}
                 </motion.h2>
                 <motion.p 
-                  className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto"
+                  className="text-xl md:text-2xl text-primary max-w-2xl mx-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
