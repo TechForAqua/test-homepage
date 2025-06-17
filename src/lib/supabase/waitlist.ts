@@ -28,28 +28,29 @@ export async function submitWaitlist(data: WaitlistSubmission) {
       if (error.code === '23505') {
         throw new Error('This email is already on our waitlist!');
       }
+      console.log(error);
       throw new Error('Failed to join waitlist. Please try again.');
     }
 
     // Send welcome email through API route
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: data.email,
-        }),
-      });
+    // try {
+    //   const response = await fetch('/api/send-email', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       email: data.email,
+    //     }),
+    //   });
 
-      if (!response.ok) {
-        throw new Error('Failed to send welcome email');
-      }
-    } catch (emailError) {
-      console.error('Error sending welcome email:', emailError);
-      // Don't throw here - we still want to return the successful submission
-    }
+    //   if (!response.ok) {
+    //     throw new Error('Failed to send welcome email');
+    //   }
+    // } catch (emailError) {
+    //   console.error('Error sending welcome email:', emailError);
+    //   // Don't throw here - we still want to return the successful submission
+    // }
 
     return result;
   } catch (error) {

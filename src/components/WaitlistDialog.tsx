@@ -102,9 +102,11 @@ export function WaitlistDialog() {
                 <SelectValue placeholder="Select your role" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="phd">PhD Student</SelectItem>
+                <SelectItem value="researcher">Researcher</SelectItem>
+                <SelectItem value="entrepreneur">Entrepreneur</SelectItem>
                 <SelectItem value="professor">Professor</SelectItem>
                 <SelectItem value="engineer">ML Engineer</SelectItem>
+                <SelectItem value="student">Student</SelectItem>
                 <SelectItem value="other">Other</SelectItem>
               </SelectContent>
             </Select>

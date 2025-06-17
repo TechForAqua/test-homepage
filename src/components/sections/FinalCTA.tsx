@@ -227,6 +227,9 @@ const FinalCTA = () => {
                   <option value="researcher" className="text-foreground bg-background">
                     Researcher
                   </option>
+                  <option value="entrepreneur" className="text-foreground bg-background">
+                    Entrepreneur
+                  </option>
                   <option value="phd-student" className="text-foreground bg-background">
                     PhD Student
                   </option>
