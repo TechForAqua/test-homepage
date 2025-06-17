@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { TextEffect } from "@/components/motion/text-effect";
 import { ExternalLink } from "lucide-react";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const testimonials = [
   {
@@ -121,6 +122,7 @@ function TestimonialCard({
 }
 
 export default function Testimonials() {
+  const { openDialog } = useWaitlist();
   return (
     <section
       id="testimonials"

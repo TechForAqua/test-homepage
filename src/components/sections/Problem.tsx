@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const screens = [
@@ -39,7 +39,7 @@ const Problem = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const lastScrollTime = useRef(Date.now());
 
-  const handleWheel = (e: WheelEvent) => {
+  const handleWheel = useCallback((e: WheelEvent) => {
     if (!sectionRef.current) return;
 
     const now = Date.now();
@@ -74,7 +74,7 @@ const Problem = () => {
     setTimeout(() => {
       setIsScrolling(false);
     }, 800);
-  };
+  }, [currentScreen, isScrolling]);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -86,7 +86,7 @@ const Problem = () => {
     return () => {
       section.removeEventListener("wheel", handleWheel);
     };
-  }, [currentScreen, isScrolling]);
+  }, [currentScreen, isScrolling, handleWheel]);
 
   // Handle keyboard navigation
   useEffect(() => {

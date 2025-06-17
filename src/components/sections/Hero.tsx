@@ -6,11 +6,13 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ShinyButton } from "../magicui/shiny-button";
 import { Badge } from "../ui/badge";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const Hero = () => {
   const [terminalContent, setTerminalContent] = useState<
     Array<{ type: string; text: string; delay: number; cursor?: boolean }>
   >([]);
+  const { openDialog } = useWaitlist();
 
   const terminalSequence = [
     { type: "command", text: "$ lesearch", delay: 100 },
@@ -158,7 +160,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <Button size="lg" className="px-8">
+              <Button size="lg" className="px-8" onClick={openDialog}>
                 Join the waitlist
               </Button>
               <Button variant="outline" size="lg" className="px-8">

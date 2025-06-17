@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { Button } from "./ui/button";
+import { useWaitlist } from "@/contexts/WaitlistContext";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,6 +20,7 @@ const Header = () => {
   });
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const { openDialog } = useWaitlist();
 
   useEffect(() => {
     setMounted(true);
@@ -150,7 +152,7 @@ const Header = () => {
                 </svg>
               )}
             </button>
-            <Button variant="default" className="hidden md:inline-block">
+            <Button variant="default" className="hidden md:inline-block" onClick={openDialog}>
               Join the waitlist
             </Button>
 
@@ -221,7 +223,7 @@ const Header = () => {
             Features
           </Link>
           <div className="pt-4 border-t border-border/50 flex flex-col space-y-4">
-            <button className="w-full bg-primary text-primary-foreground px-5 py-2 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-sm">
+            <button className="w-full bg-primary text-primary-foreground px-5 py-2 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-sm" onClick={openDialog}>
               Join the waitlist
             </button>
           </div>

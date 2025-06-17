@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { WaitlistProvider } from "@/contexts/WaitlistContext";
+import { WaitlistDialog } from "@/components/WaitlistDialog";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,8 +33,17 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${spaceMono.variable} antialiased bg-white dark:bg-neutral-950 text-black dark:text-neutral-50`}
       >
-        <ThemeProvider>
-          {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <WaitlistProvider>
+            {children}
+            <WaitlistDialog />
+            <Toaster />
+          </WaitlistProvider>
         </ThemeProvider>
       </body>
     </html>
