@@ -36,11 +36,11 @@ const bentoCards = [
         </svg>
       ),
       text: "Terminal Agent",
-      color: "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 border border-green-300 dark:border-green-700",
+      color:
+        "bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 border border-green-300 dark:border-green-700",
     },
     title: "Run paper code instantly",
-    desc:
-      "No setup, no dependencies, no friction. Just paste a paper URL and start exploring the code in seconds.",
+    desc: "No setup, no dependencies, no friction. Just paste a paper URL and start exploring the code in seconds.",
     content: (
       <div className="bg-background/80 rounded-lg p-4 font-mono text-sm border border-border mt-6">
         <div className="flex items-center mb-3">
@@ -69,7 +69,12 @@ const bentoCards = [
     type: "small",
     badge: {
       icon: (
-        <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          className="w-4 h-4 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -79,11 +84,11 @@ const bentoCards = [
         </svg>
       ),
       text: "PDF Q&A",
-      color: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
+      color:
+        "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
     },
     title: "Chat with papers",
-    desc:
-      "Ask questions about any research paper and get answers with exact citations and page references.",
+    desc: "Ask questions about any research paper and get answers with exact citations and page references.",
     bg: "bg-card dark:bg-card/80",
     text: "text-foreground",
     border: "border border-border",
@@ -93,7 +98,12 @@ const bentoCards = [
     type: "small",
     badge: {
       icon: (
-        <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          className="w-4 h-4 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -103,11 +113,11 @@ const bentoCards = [
         </svg>
       ),
       text: "Smart Editor",
-      color: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
+      color:
+        "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
     },
     title: "Code-aware writing",
-    desc:
-      "Write notes and papers with full context of the code you&apos;re exploring. Auto-complete with research insights.",
+    desc: "Write notes and papers with full context of the code you&apos;re exploring. Auto-complete with research insights.",
     bg: "bg-card dark:bg-card/80",
     text: "text-foreground",
     border: "border border-border",
@@ -117,7 +127,12 @@ const bentoCards = [
     type: "small",
     badge: {
       icon: (
-        <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg
+          className="w-4 h-4 mr-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -127,11 +142,11 @@ const bentoCards = [
         </svg>
       ),
       text: "Graph View",
-      color: "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
+      color:
+        "bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300 border border-blue-300 dark:border-blue-700",
     },
     title: "Connect ideas",
-    desc:
-      "Visualize connections between papers, code, and your notes. See the bigger picture of your research.",
+    desc: "Visualize connections between papers, code, and your notes. See the bigger picture of your research.",
     extra: (
       <div className="absolute top-4 right-4">
         <span className="text-xs bg-yellow-100 text-yellow-800 dark:bg-yellow-900/40 dark:text-yellow-200 px-2 py-1 rounded-full border border-yellow-300 dark:border-yellow-700">
@@ -148,15 +163,8 @@ const bentoCards = [
     type: "medium",
     className: "lg:col-span-2",
     title: "Everything in one place",
-    desc:
-      "Stop juggling between 10 different tools. LeSearch AI brings papers, code, terminal, and notes into one seamless workspace.",
-    tags: [
-      "PDF Viewer",
-      "Code Editor",
-      "Terminal",
-      "Notes",
-      "AI Assistant",
-    ],
+    desc: "Stop juggling between 10 different tools. LeSearch AI brings papers, code, terminal, and notes into one seamless workspace.",
+    tags: ["PDF Viewer", "Code Editor", "Terminal", "Notes", "AI Assistant"],
     bg: "bg-card dark:bg-card/80",
     text: "text-foreground",
     border: "border border-border",
@@ -166,7 +174,10 @@ const bentoCards = [
 
 const Solution = () => {
   return (
-    <section className="relative bg-background py-24 md:py-32 text-foreground grid-pattern">
+    <section
+      id="solution"
+      className="relative bg-background py-24 md:py-32 text-foreground grid-pattern"
+    >
       <div className="max-w-7xl mx-auto container-padding">
         {/* Section Header */}
         <motion.div
@@ -199,7 +210,11 @@ const Solution = () => {
             <motion.div
               key={i}
               variants={cardVariants}
-              className={`relative rounded-2xl p-6 md:p-8 group overflow-hidden ${card.bg} ${card.text} ${card.border} ${card.className || ""} ${card.hover} transition-all duration-300`}
+              className={`relative rounded-2xl p-6 md:p-8 group overflow-hidden ${
+                card.bg
+              } ${card.text} ${card.border} ${card.className || ""} ${
+                card.hover
+              } transition-all duration-300`}
             >
               {/* Subtle grid pattern overlay */}
               <div className="absolute inset-0 opacity-5 pointer-events-none">
@@ -207,20 +222,35 @@ const Solution = () => {
               </div>
               <div className="relative z-10">
                 {card.badge && (
-                  <div className={`inline-flex items-center mb-4 px-3 py-1 rounded-full text-xs font-semibold ${card.badge.color}`}>
+                  <div
+                    className={`inline-flex items-center mb-4 px-3 py-1 rounded-full text-xs font-semibold ${card.badge.color}`}
+                  >
                     {card.badge.icon}
                     {card.badge.text}
                   </div>
                 )}
-                <h3 className={`font-bold mb-3 text-lg md:text-2xl ${card.text} ${card.type === "large" ? "md:text-3xl" : ""}`}>
+                <h3
+                  className={`font-bold mb-3 text-lg md:text-2xl ${card.text} ${
+                    card.type === "large" ? "md:text-3xl" : ""
+                  }`}
+                >
                   {card.title}
                 </h3>
-                <p className={`mb-4 md:mb-6 ${card.type === "large" ? "text-lg" : "text-sm"} text-muted-foreground`}>{card.desc}</p>
+                <p
+                  className={`mb-4 md:mb-6 ${
+                    card.type === "large" ? "text-lg" : "text-sm"
+                  } text-muted-foreground`}
+                >
+                  {card.desc}
+                </p>
                 {card.content}
                 {card.tags && (
                   <div className="flex flex-wrap gap-3 mt-4">
                     {card.tags.map((tag, idx) => (
-                      <span key={idx} className="px-3 py-1 bg-background dark:bg-muted rounded-full text-sm font-medium text-muted-foreground border border-border">
+                      <span
+                        key={idx}
+                        className="px-3 py-1 bg-background dark:bg-muted rounded-full text-sm font-medium text-muted-foreground border border-border"
+                      >
                         {tag}
                       </span>
                     ))}

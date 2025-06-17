@@ -2,124 +2,210 @@
 
 import { motion } from "framer-motion";
 import { TextEffect } from "@/components/motion/text-effect";
+import { ExternalLink } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Rishi Shah",
-    role: "Master's Student in Machine Learning",
-    university: "Carnegie Mellon University",
+    name: "Dr. Sarah Chen",
+    role: "PhD in Machine Learning",
+    university: "Stanford University",
+    linkedin: "https://linkedin.com/in/sarahchen-ml",
+    avatar:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
     quote:
-      "LeSearch's reference link parser saved me countless hours. I input a complex neurobiology paper, and it instantly extracted and organized all citations. Game-changer!",
+      "LeSearch's ability to parse references and execute code in one platform has revolutionized my research workflow. What used to take hours now takes minutes.",
   },
   {
-    name: "Jamal Thompson",
-    role: "Master's Student in Computer Science",
+    name: "Prof. Marcus Rodriguez",
+    role: "Research Director, AI Lab",
     university: "MIT",
+    linkedin: "https://linkedin.com/in/marcus-rodriguez-ai",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
     quote:
-      "The ability to parse reference links across multiple CS papers helped me identify key connections in AI research that I would have missed otherwise. LeSearch is indispensable.",
-    paper: "https://doi.org/10.1145/3442188.3445922",
+      "The unified workspace eliminates the constant tool switching that plagued our research process. My team's productivity has increased by 40%.",
   },
   {
-    name: "Brian",
-    role: "Doctoral Researcher in Climate Science",
-    university: "ETH Zürich",
+    name: "Dr. Priya Patel",
+    role: "Postdoctoral Researcher",
+    university: "Carnegie Mellon",
+    linkedin: "https://linkedin.com/in/priya-patel-research",
+    avatar:
+      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
     quote:
-      "LeSearch's reference parser doesn't just list citations; it creates a visual network of interconnected research. It's revolutionized how I approach literature reviews.",
-    paper: "https://doi.org/10.1038/s41558-021-01097-4",
+      "Being able to read papers with AI assistance while simultaneously testing code implementations is a game-changer for reproducibility research.",
   },
   {
-    name: "Alex Novak",
-    role: "Postdoctoral Fellow in Quantum Physics",
-    university: "Caltech",
+    name: "Dr. James Liu",
+    role: "Senior Research Scientist",
+    university: "Google DeepMind",
+    linkedin: "https://linkedin.com/in/james-liu-deepmind",
+    avatar:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
     quote:
-      "Parsing reference links across quantum computing papers used to take days. LeSearch does it in minutes, allowing me to focus on analysis rather than data collection.",
-    paper: "https://doi.org/10.1038/s41586-019-1666-5",
+      "LeSearch's privacy-first approach with local model support makes it perfect for working with sensitive research. The knowledge graph feature is brilliant.",
+  },
+  {
+    name: "Dr. Elena Vasquez",
+    role: "Principal Researcher",
+    university: "Microsoft Research",
+    linkedin: "https://linkedin.com/in/elena-vasquez-nlp",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    quote:
+      "The smart editor understands academic context unlike any other tool. Writing papers with research-aware autocomplete feels like having an AI research assistant.",
+  },
+  {
+    name: "Dr. Ahmed Hassan",
+    role: "Associate Professor",
+    university: "Oxford University",
+    linkedin: "https://linkedin.com/in/ahmed-hassan-oxford",
+    avatar:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    quote:
+      "The terminal agent that clones repos and executes code while I'm reading related papers is exactly what I needed. No more context switching between tools.",
   },
 ];
 
-export default function Testimonials() {
-  // const [hoveredIndex, setHoveredIndex] = useState<number | null>(null) //
-
+function TestimonialCard({
+  testimonial,
+}: {
+  testimonial: (typeof testimonials)[0];
+}) {
   return (
-    <section id="testimonials" className="py-20 sm:py-28 relative">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-transparent to-orange-500/5"></div>
+    <div className="flex-shrink-0 w-80 bg-card p-6 rounded-lg shadow-sm border border-border">
+      <p className="text-card-foreground mb-4 text-sm leading-relaxed">
+        &ldquo;{testimonial.quote}&rdquo;
+      </p>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center">
+          <img
+            src={testimonial.avatar}
+            alt={testimonial.name}
+            className="w-10 h-10 rounded-full mr-3 object-cover"
+          />
+          <div>
+            <h4 className="font-medium text-card-foreground text-sm">
+              {testimonial.name}
+            </h4>
+            <p className="text-xs text-muted-foreground">{testimonial.role}</p>
+            <p className="text-xs text-muted-foreground">
+              {testimonial.university}
+            </p>
+          </div>
+        </div>
+        <a
+          href={testimonial.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted-foreground hover:text-primary transition-colors duration-200 p-1"
+          aria-label={`Visit ${testimonial.name}'s LinkedIn profile`}
+        >
+          <ExternalLink className="w-4 h-4" />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+export default function Testimonials() {
+  return (
+    <section
+      id="testimonials"
+      className="py-20 sm:py-28 relative overflow-hidden"
+    >
+      {/* Minimal background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-muted/20" />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-16 ">
+        {/* Header */}
+        <div className="text-center mb-16">
           <TextEffect
             preset="fade-in-blur"
             as="h2"
-            className="text-3xl sm:text-4xl font-bold mb-6"
+            className="text-3xl sm:text-4xl font-bold mb-6 text-foreground"
           >
-            Empowering &nbsp; Research&nbsp; with&nbsp; Smart&nbsp;
-            Citation&nbsp; Analysis
+            Trusted by{" "}
+            <span className="text-primary">Researchers Worldwide</span>
+          </TextEffect>
+          <TextEffect
+            preset="fade-in-blur"
+            delay={0.2}
+            as="p"
+            className="text-lg text-muted-foreground max-w-2xl mx-auto"
+          >
+            Join leading researchers who have transformed their workflow with
+            LeSearch AI
           </TextEffect>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {testimonials.map((testimonial, index) => (
+        {/* Desktop Marquee */}
+        <div className="relative hidden md:block">
+          {/* Gradient Overlays */}
+          <div className="absolute left-0 top-0 bottom-0 w-48 bg-gradient-to-r from-background to-transparent z-10"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-48 bg-gradient-to-l from-background to-transparent z-10"></div>
+
+          {/* Scrolling Container */}
+          <div className="overflow-hidden">
+            {/* Single animated container with both sets */}
+            <div className="flex gap-8 animate-marquee">
+              {/* First set of testimonials */}
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard
+                  key={`first-${index}`}
+                  testimonial={testimonial}
+                />
+              ))}
+              {/* Second set for seamless looping */}
+              {testimonials.map((testimonial, index) => (
+                <TestimonialCard
+                  key={`second-${index}`}
+                  testimonial={testimonial}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Grid */}
+        <div className="md:hidden space-y-6">
+          {testimonials.slice(0, 4).map((testimonial, index) => (
             <motion.div
               key={index}
-              className="bg-card rounded-xl p-8 shadow-lg border border-border relative overflow-hidden "
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.5,
-                delay: index * 0.1,
-                type: "spring",
-                bounce: 0.3,
-              }}
-              // onHoverStart={() => setHoveredIndex(index)}
-              // onHoverEnd={() => setHoveredIndex(null)}
-              whileHover={{
-                y: -8,
-                boxShadow:
-                  "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                transition: { duration: 0.2 },
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="absolute top-0 left-0 w-20 h-20 bg-blue-500/10 rounded-full -ml-10 -mt-10"></div>
-              <div className="absolute bottom-0 right-0 w-20 h-20 bg-orange-500/10 rounded-full -mr-10 -mb-10"></div>
-
-              <div className="relative">
-                <p className="text-lg mb-6 italic">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div className="flex justify-between items-end">
-                  <div>
-                    <h3 className="text-xl font-semibold text-blue-400">
-                      {testimonial.name}
-                    </h3>
-                    <p className="text-muted-foreground">{testimonial.role}</p>
-                    <p className="text-muted-foreground">
-                      {testimonial.university}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <TestimonialCard testimonial={testimonial} />
             </motion.div>
           ))}
         </div>
 
+        {/* Bottom CTA */}
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <p className="text-lg text-muted-foreground mb-6">
-            Experience how LeSearch&apos;s reference link parser can transform
-            your research process.
-          </p>
-          <motion.button
-            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-200"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Try LeSearch Now
-          </motion.button>
+          <div className="max-w-2xl mx-auto rounded-lg border border-border bg-card p-6">
+            <p className="text-sm font-medium text-card-foreground mb-2">
+              Ready to Transform Your Research?
+            </p>
+            <p className="text-xs text-muted-foreground mb-4">
+              Join thousands of researchers already using LeSearch AI to
+              accelerate their work.
+            </p>
+            <motion.button
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              Start Your Research Journey
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -12,7 +12,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(() => {
     // Check if window is available (client-side)
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       return window.scrollY > 10;
     }
     return false;
@@ -40,23 +40,40 @@ const Header = () => {
       transition={{ duration: 0.7, ease: [0.4, 0.2, 0.2, 1] }}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300`}
     >
-      <div className={`mx-auto transition-all duration-300 ${
-        scrolled 
-          ? "max-w-3xl px-4 bg-background/90 backdrop-blur-md py-3 shadow-lg rounded-lg mt-4 border border-border/50" 
-          : "max-w-7xl px-4 bg-transparent py-5"
-      }`}>
+      <div
+        className={`mx-auto transition-all duration-300 ${
+          scrolled
+            ? "max-w-3xl px-4 bg-background/90 backdrop-blur-md py-3 shadow-lg rounded-lg mt-4 border border-border/50"
+            : "max-w-7xl px-4 bg-transparent py-5"
+        }`}
+      >
         <div className="flex items-center justify-between">
           {/* Logo and Brand */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-3 group">
-              <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
-                scrolled ? "scale-90" : ""
-              } bg-accent/10 group-hover:bg-accent/20`}>
-                <Image src={resolvedTheme === "dark" ? "/logo/Lesearch Logo Dark.svg" : "/logo/Lesearch Logo.svg"} alt="Logo" width={32} height={32}/>
+              <div
+                className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                  scrolled ? "scale-90" : ""
+                } bg-accent/10 group-hover:bg-accent/20`}
+              >
+                <Image
+                  src={
+                    resolvedTheme === "dark"
+                      ? "/logo/Lesearch Logo Dark.svg"
+                      : "/logo/Lesearch Logo.svg"
+                  }
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                />
               </div>
-              <span className={`text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent transition-all duration-300 ${
-                scrolled ? "text-base" : ""
-              }`}>LeSearch</span>
+              <span
+                className={`text-2xl font-bold bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent transition-all duration-300 ${
+                  scrolled ? "text-base" : ""
+                }`}
+              >
+                LeSearch
+              </span>
             </Link>
           </div>
 
@@ -66,16 +83,28 @@ const Header = () => {
               scrolled ? "scale-95" : ""
             }`}
           >
-            <Link href="#problem" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="#problem"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Problem
             </Link>
-            <Link href="#solution" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="#solution"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Solution
             </Link>
-            <Link href="#teams" className="text-muted-foreground hover:text-primary transition-colors">
-              Teams
+            <Link
+              href="#team"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
+              Team
             </Link>
-            <Link href="#features" className="text-muted-foreground hover:text-primary transition-colors">
+            <Link
+              href="#features"
+              className="text-muted-foreground hover:text-primary transition-colors"
+            >
               Features
             </Link>
           </div>
@@ -146,9 +175,14 @@ const Header = () => {
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
         <div className="flex justify-between items-center p-4 border-b border-border/50">
-          <Link href="/" className="flex items-center space-x-2 text-2xl font-bold">
+          <Link
+            href="/"
+            className="flex items-center space-x-2 text-2xl font-bold"
+          >
             <Search className="h-6 w-6 text-accent" />
-            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">LeSearch</span>
+            <span className="bg-gradient-to-r from-primary to-primary/80 bg-clip-text text-transparent">
+              LeSearch
+            </span>
           </Link>
           <button
             onClick={() => setIsMenuOpen(false)}
@@ -173,11 +207,11 @@ const Header = () => {
             Solution
           </Link>
           <Link
-            href="#teams"
+            href="#team"
             className="text-lg font-medium p-2 hover:bg-secondary/50 rounded-md transition-colors text-muted-foreground hover:text-primary"
             onClick={() => setIsMenuOpen(false)}
           >
-            Teams
+            Team
           </Link>
           <Link
             href="#features"

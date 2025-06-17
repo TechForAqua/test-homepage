@@ -1,6 +1,6 @@
-"use client"
-import React, { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const screens = [
   {
@@ -48,14 +48,16 @@ const Problem = () => {
 
     const section = sectionRef.current;
     const rect = section.getBoundingClientRect();
-    
+
     // Check if section is in viewport
     const isInView = rect.top <= 0 && rect.bottom >= window.innerHeight;
     if (!isInView) return;
 
     // Prevent default scroll only if we're going to handle it
-    if ((e.deltaY > 0 && currentScreen < screens.length - 1) || 
-        (e.deltaY < 0 && currentScreen > 0)) {
+    if (
+      (e.deltaY > 0 && currentScreen < screens.length - 1) ||
+      (e.deltaY < 0 && currentScreen > 0)
+    ) {
       e.preventDefault();
     }
 
@@ -64,9 +66,9 @@ const Problem = () => {
     setIsScrolling(true);
 
     if (e.deltaY > 0 && currentScreen < screens.length - 1) {
-      setCurrentScreen(prev => prev + 1);
+      setCurrentScreen((prev) => prev + 1);
     } else if (e.deltaY < 0 && currentScreen > 0) {
-      setCurrentScreen(prev => prev - 1);
+      setCurrentScreen((prev) => prev - 1);
     }
 
     setTimeout(() => {
@@ -79,10 +81,10 @@ const Problem = () => {
     if (!section) return;
 
     // Add wheel event listener with passive: false to allow preventDefault
-    section.addEventListener('wheel', handleWheel, { passive: false });
-    
+    section.addEventListener("wheel", handleWheel, { passive: false });
+
     return () => {
-      section.removeEventListener('wheel', handleWheel);
+      section.removeEventListener("wheel", handleWheel);
     };
   }, [currentScreen, isScrolling]);
 
@@ -91,23 +93,27 @@ const Problem = () => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (isScrolling) return;
 
-      if (e.key === 'ArrowDown' && currentScreen < screens.length - 1) {
+      if (e.key === "ArrowDown" && currentScreen < screens.length - 1) {
         setIsScrolling(true);
-        setCurrentScreen(prev => prev + 1);
+        setCurrentScreen((prev) => prev + 1);
         setTimeout(() => setIsScrolling(false), 800);
-      } else if (e.key === 'ArrowUp' && currentScreen > 0) {
+      } else if (e.key === "ArrowUp" && currentScreen > 0) {
         setIsScrolling(true);
-        setCurrentScreen(prev => prev - 1);
+        setCurrentScreen((prev) => prev - 1);
         setTimeout(() => setIsScrolling(false), 800);
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [currentScreen, isScrolling]);
 
   return (
-    <div ref={sectionRef} className="relative h-screen w-full overflow-hidden bg-background">
+    <div
+      ref={sectionRef}
+      id="problem"
+      className="relative h-screen w-full overflow-hidden bg-background"
+    >
       <div ref={containerRef} className="relative h-full w-full">
         {/* Progress Dots - Contained within the section */}
         <div className="absolute right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-8">
@@ -115,7 +121,9 @@ const Problem = () => {
             <motion.button
               key={index}
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                currentScreen === index ? 'bg-primary scale-125' : 'bg-primary/30'
+                currentScreen === index
+                  ? "bg-primary scale-125"
+                  : "bg-primary/30"
               }`}
               onClick={() => setCurrentScreen(index)}
               whileHover={{ scale: 1.2 }}
@@ -141,7 +149,7 @@ const Problem = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
               >
-                <motion.div 
+                <motion.div
                   className="text-6xl mb-8"
                   initial={{ scale: 0.5, rotate: -10 }}
                   animate={{ scale: 1, rotate: 0 }}
@@ -159,7 +167,7 @@ const Problem = () => {
                     {screens[currentScreen].number}
                   </motion.div>
                 )}
-                <motion.h2 
+                <motion.h2
                   className="text-4xl md:text-5xl font-bold mb-6 text-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -167,13 +175,14 @@ const Problem = () => {
                 >
                   {screens[currentScreen].title || screens[currentScreen].text}
                 </motion.h2>
-                <motion.p 
+                <motion.p
                   className="text-xl md:text-2xl text-primary max-w-2xl mx-auto"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  {screens[currentScreen].subtitle || screens[currentScreen].description}
+                  {screens[currentScreen].subtitle ||
+                    screens[currentScreen].description}
                 </motion.p>
               </motion.div>
             </div>
@@ -181,7 +190,7 @@ const Problem = () => {
         </AnimatePresence>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Problem
+export default Problem;
