@@ -6,64 +6,76 @@ import { ExternalLink } from "lucide-react";
 
 const testimonials = [
   {
-    name: "Dr. Sarah Chen",
-    role: "PhD in Machine Learning",
-    university: "Stanford University",
-    linkedin: "https://linkedin.com/in/sarahchen-ml",
-    avatar:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&crop=face",
+    name: "Dr. Raj Patel",
+    role: "Professor of Computer Science",
+    university: "Carnegie Mellon University",
+    linkedin: "https://linkedin.com/in/raj-patel-cmu",
+    initials: "RP",
     quote:
-      "LeSearch's ability to parse references and execute code in one platform has revolutionized my research workflow. What used to take hours now takes minutes.",
+      "LeSearch has transformed how my graduate students approach literature reviews. The integrated code execution with paper analysis has reduced our research iteration time by 60%.",
   },
   {
-    name: "Prof. Marcus Rodriguez",
-    role: "Research Director, AI Lab",
-    university: "MIT",
-    linkedin: "https://linkedin.com/in/marcus-rodriguez-ai",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+    name: "Sarah Chen",
+    role: "PhD Candidate, Machine Learning",
+    university: "Carnegie Mellon University",
+    linkedin: "https://linkedin.com/in/sarah-chen-ml-cmu",
+    initials: "SC",
     quote:
-      "The unified workspace eliminates the constant tool switching that plagued our research process. My team's productivity has increased by 40%.",
+      "As a CMU PhD student, I need tools that keep up with rapid experimentation. LeSearch's unified workspace lets me seamlessly move from reading papers to implementing and testing ideas.",
   },
   {
-    name: "Dr. Priya Patel",
-    role: "Postdoctoral Researcher",
-    university: "Carnegie Mellon",
-    linkedin: "https://linkedin.com/in/priya-patel-research",
-    avatar:
-      "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop&crop=face",
+    name: "Dr. Marcus Thompson",
+    role: "Research Scientist",
+    university: "Google Research",
+    linkedin: "https://linkedin.com/in/marcus-thompson-research",
+    initials: "MT",
     quote:
-      "Being able to read papers with AI assistance while simultaneously testing code implementations is a game-changer for reproducibility research.",
+      "After graduating from CMU, I needed a platform that could handle enterprise-scale research. LeSearch's privacy-first architecture makes it perfect for sensitive AI research projects.",
+  },
+  {
+    name: "Priya Sharma",
+    role: "Research Associate",
+    university: "Microsoft Research",
+    linkedin: "https://linkedin.com/in/priya-sharma-msft",
+    initials: "PS",
+    quote:
+      "Fresh out of my Master's program, LeSearch helped me transition from academic research to industry. The knowledge graph feature bridges the gap between theoretical understanding and practical implementation.",
   },
   {
     name: "Dr. James Liu",
-    role: "Senior Research Scientist",
-    university: "Google DeepMind",
-    linkedin: "https://linkedin.com/in/james-liu-deepmind",
-    avatar:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face",
+    role: "Director of AI Research",
+    university: "OpenAI",
+    linkedin: "https://linkedin.com/in/james-liu-openai",
+    initials: "JL",
     quote:
-      "LeSearch's privacy-first approach with local model support makes it perfect for working with sensitive research. The knowledge graph feature is brilliant.",
+      "Managing a team of researchers requires tools that scale with complexity. LeSearch's collaborative features and terminal integration have streamlined our entire research pipeline.",
   },
   {
-    name: "Dr. Elena Vasquez",
-    role: "Principal Researcher",
-    university: "Microsoft Research",
-    linkedin: "https://linkedin.com/in/elena-vasquez-nlp",
-    avatar:
-      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face",
+    name: "Elena Rodriguez",
+    role: "Graduate Research Assistant",
+    university: "Carnegie Mellon University",
+    linkedin: "https://linkedin.com/in/elena-rodriguez-cmu",
+    initials: "ER",
     quote:
-      "The smart editor understands academic context unlike any other tool. Writing papers with research-aware autocomplete feels like having an AI research assistant.",
+      "Working on my thesis at CMU, I needed something more powerful than traditional research tools. LeSearch's AI-assisted paper analysis has been invaluable for my computer vision research.",
   },
   {
     name: "Dr. Ahmed Hassan",
-    role: "Associate Professor",
-    university: "Oxford University",
-    linkedin: "https://linkedin.com/in/ahmed-hassan-oxford",
-    avatar:
-      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+    role: "Principal Research Scientist",
+    university: "DeepMind",
+    linkedin: "https://linkedin.com/in/ahmed-hassan-deepmind",
+    initials: "AH",
     quote:
-      "The terminal agent that clones repos and executes code while I'm reading related papers is exactly what I needed. No more context switching between tools.",
+      "The reproducibility crisis in ML research demanded better tools. LeSearch's ability to execute code directly from papers while maintaining proper documentation has been a game-changer.",
+  },
+  {
+    name: "Melissa Park",
+    role: "Postdoctoral Researcher",
+    university: "Carnegie Mellon University",
+    linkedin: "https://linkedin.com/in/melissa-park-cmu",
+    initials: "MP",
+    quote:
+      "Transitioning from my PhD to postdoc work at CMU, LeSearch helped me quickly get up to speed with new research domains. The intelligent search across papers and code saves hours daily.",
   },
 ];
 
@@ -73,23 +85,23 @@ function TestimonialCard({
   testimonial: (typeof testimonials)[0];
 }) {
   return (
-    <div className="flex-shrink-0 w-80 bg-card p-6 rounded-lg shadow-sm border border-border">
-      <p className="text-card-foreground mb-4 text-sm leading-relaxed">
+    <div className="flex-shrink-0 w-full max-w-sm sm:w-80 lg:w-96 xl:w-[400px] bg-card border border-border p-4 sm:p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 hover:border-ring/20">
+      <p className="text-card-foreground mb-4 sm:mb-6 text-sm sm:text-base leading-relaxed font-medium">
         &ldquo;{testimonial.quote}&rdquo;
       </p>
-      <div className="flex items-center justify-between">
-        <div className="flex items-center">
-          <img
-            src={testimonial.avatar}
-            alt={testimonial.name}
-            className="w-10 h-10 rounded-full mr-3 object-cover"
-          />
-          <div>
-            <h4 className="font-medium text-card-foreground text-sm">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-3 min-w-0 flex-1">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold text-xs sm:text-sm flex-shrink-0">
+            {testimonial.initials}
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="font-semibold text-card-foreground text-sm sm:text-base leading-tight">
               {testimonial.name}
             </h4>
-            <p className="text-xs text-muted-foreground">{testimonial.role}</p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground mt-1 leading-tight">
+              {testimonial.role}
+            </p>
+            <p className="text-xs sm:text-sm text-muted-foreground leading-tight">
               {testimonial.university}
             </p>
           </div>
@@ -98,10 +110,10 @@ function TestimonialCard({
           href={testimonial.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-muted-foreground hover:text-primary transition-colors duration-200 p-1"
+          className="text-muted-foreground hover:text-primary transition-colors duration-200 p-1.5 sm:p-2 hover:bg-accent rounded-full flex-shrink-0"
           aria-label={`Visit ${testimonial.name}'s LinkedIn profile`}
         >
-          <ExternalLink className="w-4 h-4" />
+          <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </a>
       </div>
     </div>
@@ -112,43 +124,42 @@ export default function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-20 sm:py-28 relative overflow-hidden"
+      className="py-12 sm:py-16 lg:py-20 xl:py-28 relative overflow-hidden bg-muted/30"
     >
-      {/* Minimal background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-muted/20" />
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16 xl:mb-20">
           <TextEffect
             preset="fade-in-blur"
             as="h2"
-            className="text-3xl sm:text-4xl font-bold mb-6 text-foreground"
+            className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 sm:mb-4 lg:mb-6 text-foreground leading-tight"
           >
             Trusted by{" "}
             <span className="text-primary">Researchers Worldwide</span>
           </TextEffect>
-          <TextEffect
-            preset="fade-in-blur"
-            delay={0.2}
-            as="p"
-            className="text-lg text-muted-foreground max-w-2xl mx-auto"
-          >
-            Join leading researchers who have transformed their workflow with
-            LeSearch AI
-          </TextEffect>
+          <div className="mt-3 sm:mt-4 lg:mt-6">
+            <TextEffect
+              preset="fade-in-blur"
+              delay={0.2}
+              as="p"
+              className="text-sm sm:text-base lg:text-xl xl:text-2xl text-muted-foreground max-w-xl lg:max-w-2xl xl:max-w-3xl mx-auto leading-relaxed"
+            >
+              Join leading researchers who have transformed their workflow with
+              LeSearch AI
+            </TextEffect>
+          </div>
         </div>
 
-        {/* Desktop Marquee */}
-        <div className="relative hidden md:block">
+        {/* Desktop & Tablet Marquee */}
+        <div className="relative hidden sm:block">
           {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-48 bg-gradient-to-r from-background to-transparent z-10"></div>
-          <div className="absolute right-0 top-0 bottom-0 w-48 bg-gradient-to-l from-background to-transparent z-10"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-32 lg:w-48 xl:w-64 bg-gradient-to-r from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-32 lg:w-48 xl:w-64 bg-gradient-to-l from-background via-background/80 to-transparent z-10 pointer-events-none"></div>
 
           {/* Scrolling Container */}
-          <div className="overflow-hidden">
-            {/* Single animated container with both sets */}
-            <div className="flex gap-8 animate-marquee">
+          <div className="overflow-hidden mask-gradient-horizontal">
+            {/* Faster animated container */}
+            <div className="flex gap-4 sm:gap-6 lg:gap-8 animate-marquee-fast">
               {/* First set of testimonials */}
               {testimonials.map((testimonial, index) => (
                 <TestimonialCard
@@ -167,44 +178,66 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* Mobile Grid */}
-        <div className="md:hidden space-y-6">
-          {testimonials.slice(0, 4).map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <TestimonialCard testimonial={testimonial} />
-            </motion.div>
-          ))}
+        {/* Mobile Vertical Stack */}
+        <div className="sm:hidden">
+          <div className="space-y-4">
+            {testimonials.slice(0, 4).map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: "easeOut",
+                }}
+                className="w-full"
+              >
+                <TestimonialCard testimonial={testimonial} />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile show more button */}
+          <motion.div
+            className="mt-6 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            <button className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 px-4 py-2 rounded-lg border border-border hover:border-ring/30">
+              View More Testimonials
+            </button>
+          </motion.div>
         </div>
 
         {/* Bottom CTA */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-12 sm:mt-16 lg:mt-20 xl:mt-24 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <div className="max-w-2xl mx-auto rounded-lg border border-border bg-card p-6">
-            <p className="text-sm font-medium text-card-foreground mb-2">
-              Ready to Transform Your Research?
-            </p>
-            <p className="text-xs text-muted-foreground mb-4">
-              Join thousands of researchers already using LeSearch AI to
-              accelerate their work.
-            </p>
-            <motion.button
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-md transition-colors duration-200 text-sm"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Start Your Research Journey
-            </motion.button>
+          <div className="max-w-xl sm:max-w-2xl lg:max-w-3xl mx-auto rounded-xl border border-border bg-card p-6 sm:p-8 lg:p-10 shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div className="space-y-3 sm:space-y-4 lg:space-y-6">
+              <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-card-foreground">
+                Ready to Transform Your Research?
+              </h3>
+              <p className="text-sm sm:text-base lg:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
+                Join thousands of researchers already using LeSearch AI to
+                accelerate their work.
+              </p>
+              <motion.button
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 px-6 sm:py-3 sm:px-8 lg:py-4 lg:px-10 rounded-lg transition-all duration-200 text-sm sm:text-base lg:text-lg shadow-sm hover:shadow-md border border-primary/20 hover:border-primary/30"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Start Your Research Journey
+              </motion.button>
+            </div>
           </div>
         </motion.div>
       </div>

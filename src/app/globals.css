@@ -316,4 +316,31 @@ body {
   .animate-marquee:hover {
     animation-play-state: paused;
   }
+
+  /* Faster marquee animation for testimonials */
+  .animate-marquee-fast {
+    animation: marquee 30s linear infinite;
+  }
+
+  .animate-marquee-fast:hover {
+    animation-play-state: paused;
+  }
+
+  /* Gradient mask for better testimonial transitions */
+  .mask-gradient-horizontal {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 5%,
+      black 95%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 5%,
+      black 95%,
+      transparent 100%
+    );
+  }
 }
