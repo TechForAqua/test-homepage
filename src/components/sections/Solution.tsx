@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Button } from "../ui/button";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -176,23 +177,23 @@ const Solution = () => {
   return (
     <section
       id="solution"
-      className="relative bg-background py-24 md:py-32 text-foreground grid-pattern"
+      className="relative bg-background py-16 sm:py-24 md:py-32 text-foreground grid-pattern"
     >
-      <div className="max-w-7xl mx-auto container-padding">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0.2, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-10 sm:mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-primary">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6 text-primary">
             One workspace.
             <br />
             Infinite possibilities.
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
             LeSearch AI eliminates the friction between reading papers and
             running code. Everything you need in one minimalist interface.
           </p>
@@ -204,13 +205,13 @@ const Solution = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12"
         >
           {bentoCards.map((card, i) => (
             <motion.div
               key={i}
               variants={cardVariants}
-              className={`relative rounded-2xl p-6 md:p-8 group overflow-hidden ${
+              className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 group overflow-hidden ${
                 card.bg
               } ${card.text} ${card.border} ${card.className || ""} ${
                 card.hover
@@ -223,33 +224,51 @@ const Solution = () => {
               <div className="relative z-10">
                 {card.badge && (
                   <div
-                    className={`inline-flex items-center mb-4 px-3 py-1 rounded-full text-xs font-semibold ${card.badge.color}`}
+                    className={`inline-flex items-center mb-3 sm:mb-4 px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs font-semibold ${card.badge.color}`}
                   >
                     {card.badge.icon}
                     {card.badge.text}
                   </div>
                 )}
                 <h3
-                  className={`font-bold mb-3 text-lg md:text-2xl ${card.text} ${
+                  className={`font-bold mb-2 sm:mb-3 text-base sm:text-lg md:text-2xl ${card.text} ${
                     card.type === "large" ? "md:text-3xl" : ""
                   }`}
                 >
                   {card.title}
                 </h3>
                 <p
-                  className={`mb-4 md:mb-6 ${
-                    card.type === "large" ? "text-lg" : "text-sm"
+                  className={`mb-3 sm:mb-4 md:mb-6 ${
+                    card.type === "large" ? "text-base sm:text-lg" : "text-xs sm:text-sm"
                   } text-muted-foreground`}
                 >
                   {card.desc}
                 </p>
-                {card.content}
+                {card.content && (
+                  <div className="bg-background/80 rounded-lg p-3 sm:p-4 font-mono text-xs sm:text-sm border border-border mt-4 sm:mt-6">
+                    <div className="flex items-center mb-2 sm:mb-3">
+                      <div className="flex space-x-1.5 sm:space-x-2">
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-destructive rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-yellow-400 rounded-full"></div>
+                        <div className="w-2 h-2 sm:w-3 sm:h-3 bg-green-500 rounded-full"></div>
+                      </div>
+                      <span className="ml-3 sm:ml-4 text-[10px] sm:text-xs text-muted-foreground">LeSearch Terminal</span>
+                    </div>
+                    <div className="space-y-0.5 sm:space-y-1">
+                      <div className="text-green-500">$ lesearch run attention-paper</div>
+                      <div className="text-muted-foreground">✓ Environment ready</div>
+                      <div className="text-muted-foreground">✓ Dependencies installed</div>
+                      <div className="text-green-500">$ python train.py</div>
+                      <div className="text-muted-foreground">Training started...</div>
+                    </div>
+                  </div>
+                )}
                 {card.tags && (
-                  <div className="flex flex-wrap gap-3 mt-4">
+                  <div className="flex flex-wrap gap-2 sm:gap-3 mt-3 sm:mt-4">
                     {card.tags.map((tag, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 bg-background dark:bg-muted rounded-full text-sm font-medium text-muted-foreground border border-border"
+                        className="px-2 sm:px-3 py-0.5 sm:py-1 bg-background dark:bg-muted rounded-full text-xs sm:text-sm font-medium text-muted-foreground border border-border"
                       >
                         {tag}
                       </span>
@@ -270,10 +289,10 @@ const Solution = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <p className="text-muted-foreground mb-4">
+          <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
             Ready to transform your research workflow?
           </p>
-          <button className="btn-secondary">Join the waitlist</button>
+          <Button className="btn-secondary text-sm sm:text-base">Join the waitlist</Button>
         </motion.div>
       </div>
     </section>

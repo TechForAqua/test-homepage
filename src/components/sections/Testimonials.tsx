@@ -236,6 +236,11 @@ export default function Testimonials() {
                 className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-2.5 px-6 sm:py-3 sm:px-8 lg:py-4 lg:px-10 rounded-lg transition-all duration-200 text-sm sm:text-base lg:text-lg shadow-sm hover:shadow-md border border-primary/20 hover:border-primary/30"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                onClick={openDialog}
+                type="button"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
               >
                 Start Your Research Journey
               </motion.button>

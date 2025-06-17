@@ -112,15 +112,15 @@ const Problem = () => {
     <div
       ref={sectionRef}
       id="problem"
-      className="relative h-screen w-full overflow-hidden bg-background"
+      className="relative h-[500px] md:h-[100dvh] w-full overflow-hidden bg-background"
     >
-      <div ref={containerRef} className="relative h-full w-full">
+      <div ref={containerRef} className="relative h-full w-full py-12 sm:py-0">
         {/* Progress Dots - Contained within the section */}
-        <div className="absolute right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-8">
+        <div className="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-4 sm:gap-8">
           {screens.map((_, index) => (
             <motion.button
               key={index}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                 currentScreen === index
                   ? "bg-primary scale-125"
                   : "bg-primary/30"
@@ -142,7 +142,7 @@ const Problem = () => {
             exit={{ opacity: 0, y: -100 }}
             transition={{ duration: 0.8, ease: "easeInOut" }}
           >
-            <div className="container mx-auto px-8 max-w-4xl">
+            <div className="container mx-auto px-6 sm:px-8 max-w-4xl">
               <motion.div
                 className="text-center"
                 initial={{ opacity: 0, y: 20 }}
@@ -150,7 +150,7 @@ const Problem = () => {
                 transition={{ delay: 0.2 }}
               >
                 <motion.div
-                  className="text-6xl mb-8"
+                  className="text-4xl sm:text-5xl md:text-6xl mb-3 sm:mb-6"
                   initial={{ scale: 0.5, rotate: -10 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -159,7 +159,7 @@ const Problem = () => {
                 </motion.div>
                 {screens[currentScreen].number && (
                   <motion.div
-                    className="text-6xl font-bold mb-4 text-primary"
+                    className="text-4xl sm:text-5xl md:text-6xl font-bold mb-2 sm:mb-4 text-primary"
                     initial={{ scale: 0.5, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
                     transition={{ type: "spring", stiffness: 200, damping: 20 }}
@@ -168,7 +168,7 @@ const Problem = () => {
                   </motion.div>
                 )}
                 <motion.h2
-                  className="text-4xl md:text-5xl font-bold mb-6 text-primary"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 text-primary"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
@@ -176,7 +176,7 @@ const Problem = () => {
                   {screens[currentScreen].title || screens[currentScreen].text}
                 </motion.h2>
                 <motion.p
-                  className="text-xl md:text-2xl text-primary max-w-2xl mx-auto"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl text-primary max-w-2xl mx-auto px-2 sm:px-0"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}

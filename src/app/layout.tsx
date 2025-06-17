@@ -42,7 +42,7 @@ export default function RootLayout({
           <WaitlistProvider>
             {children}
             <WaitlistDialog />
-            <Toaster />
+            <Toaster richColors />
           </WaitlistProvider>
         </ThemeProvider>
       </body>

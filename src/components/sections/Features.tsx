@@ -74,7 +74,7 @@ function GridPattern({
   y?: number;
   squares?: [number, number][];
   className?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }) {
   const [patternId] = useState(
     () => `pattern-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
@@ -180,13 +180,12 @@ function FeatureCard({
 
   useEffect(() => {
     setIsMounted(true);
-    // Use static pattern based on index to ensure consistency
     setPattern(STATIC_PATTERNS[index % STATIC_PATTERNS.length]);
   }, [index]);
 
   return (
     <motion.div
-      className="group relative overflow-hidden rounded-lg border border-border bg-card p-6 transition-all duration-300 hover:border-border/60 hover:bg-muted/30"
+      className="group relative overflow-hidden rounded-lg border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:border-border/60 hover:bg-muted/30"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
@@ -201,7 +200,7 @@ function FeatureCard({
         transition: { duration: 0.2 },
       }}
     >
-      {/* Subtle Grid Pattern Background - only visible on hover and after mount */}
+      {/* Subtle Grid Pattern Background */}
       {isMounted && (
         <div
           className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full opacity-0 transition-opacity duration-500 group-hover:opacity-30"
@@ -225,23 +224,23 @@ function FeatureCard({
       )}
 
       {/* Icon */}
-      <div className="relative z-10 mb-4 text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
-        <feature.icon className="h-6 w-6" strokeWidth={1.5} />
+      <div className="relative z-10 mb-3 sm:mb-4 text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+        <feature.icon className="h-5 w-5 sm:h-6 sm:w-6" strokeWidth={1.5} />
       </div>
 
       {/* Category Badge */}
-      <div className="relative z-10 mb-3">
-        <span className="inline-flex items-center rounded-full bg-muted px-2 py-1 text-xs font-medium text-muted-foreground">
+      <div className="relative z-10 mb-2 sm:mb-3">
+        <span className="inline-flex items-center rounded-full bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-muted-foreground">
           {feature.category}
         </span>
       </div>
 
       {/* Content */}
       <div className="relative z-10">
-        <h3 className="mb-3 text-lg font-semibold text-card-foreground transition-colors duration-300">
+        <h3 className="mb-2 sm:mb-3 text-base sm:text-lg font-semibold text-card-foreground transition-colors duration-300">
           {feature.title}
         </h3>
-        <p className="text-sm leading-relaxed text-muted-foreground transition-colors duration-300">
+        <p className="text-xs sm:text-sm leading-relaxed text-muted-foreground transition-colors duration-300">
           {feature.description}
         </p>
       </div>
@@ -251,17 +250,17 @@ function FeatureCard({
 
 export default function Features() {
   return (
-    <section id="features" className="relative py-20 sm:py-28">
+    <section id="features" className="relative py-12 sm:py-20 md:py-28">
       {/* Minimal Section Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-16 text-center">
+        <div className="mb-10 sm:mb-16 text-center">
           <TextEffect
             preset="fade-in-blur"
             as="h2"
-            className="mb-6 text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl"
+            className="mb-4 sm:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground"
           >
             Six Research Tools,{" "}
             <span className="text-primary">One Platform</span>
@@ -272,7 +271,7 @@ export default function Features() {
             preset="fade-in-blur"
             delay={0.3}
             as="p"
-            className="mx-auto max-w-3xl text-lg text-muted-foreground sm:text-xl"
+            className="mx-auto max-w-3xl text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground px-2 sm:px-0"
           >
             From paper reading to code execution, LeSearch AI eliminates tool
             switching and accelerates your research workflow.
@@ -281,7 +280,7 @@ export default function Features() {
 
         {/* Features Grid */}
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
               <FeatureCard
                 key={feature.title}
@@ -294,17 +293,17 @@ export default function Features() {
 
         {/* Bottom Section */}
         <motion.div
-          className="mt-16 text-center"
+          className="mt-10 sm:mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="mx-auto max-w-2xl rounded-lg border border-border bg-card p-6">
-            <p className="text-sm font-medium text-card-foreground mb-2">
+          <div className="mx-auto max-w-2xl rounded-lg border border-border bg-card p-4 sm:p-6">
+            <p className="text-xs sm:text-sm font-medium text-card-foreground mb-1.5 sm:mb-2">
               Built for Researchers
             </p>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[10px] sm:text-xs text-muted-foreground">
               Transform your research workflow with tools designed specifically
               for AI researchers who need both paper comprehension and code
               execution in one unified environment.

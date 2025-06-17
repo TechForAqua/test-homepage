@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ShinyButton } from "../magicui/shiny-button";
@@ -14,7 +14,7 @@ const Hero = () => {
   >([]);
   const { openDialog } = useWaitlist();
 
-  const terminalSequence = [
+  const terminalSequence = useMemo(() => [
     { type: "command", text: "$ lesearch", delay: 100 },
     {
       type: "output",
@@ -62,17 +62,9 @@ const Hero = () => {
     },
     { type: "output", text: "", delay: 500 },
     { type: "command", text: "$ ", delay: 0, cursor: true },
-  ];
+  ], []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      animateTerminal();
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const animateTerminal = () => {
+  const animateTerminal = useCallback(() => {
     let index = 0;
     const animate = () => {
       if (index < terminalSequence.length) {
@@ -83,7 +75,15 @@ const Hero = () => {
       }
     };
     animate();
-  };
+  }, [terminalSequence]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      animateTerminal();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [animateTerminal]);
 
   const restartAnimation = () => {
     setTerminalContent([]);

@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { submitFinalCTA } from "@/lib/supabase/waitlist";
+import { toast } from "sonner";
 
 const FinalCTA = () => {
   const [formData, setFormData] = useState({
@@ -19,14 +21,25 @@ const FinalCTA = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // TODO: Integrate with Supabase
-    console.log("Form submitted:", formData);
+    try {
+      await submitFinalCTA({
+        name: formData.name,
+        email: formData.email,
+        role: formData.role,
+        institution: formData.institution || undefined,
+        feature: formData.feature || undefined,
+      });
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsSubmitting(false);
       setIsSubmitted(true);
-    }, 1000);
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Something went wrong. Please try again.");
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -40,16 +53,16 @@ const FinalCTA = () => {
 
   if (isSubmitted) {
     return (
-      <section className="relative bg-background text-foreground py-24 md:py-32">
-        <div className="max-w-4xl mx-auto container-padding text-center">
+      <section className="relative bg-background text-foreground py-16 sm:py-24 md:py-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
               <svg
-                className="w-8 h-8 text-primary-foreground"
+                className="w-6 h-6 sm:w-8 sm:h-8 text-primary-foreground"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -62,17 +75,17 @@ const FinalCTA = () => {
                 />
               </svg>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 text-primary">
               You&apos;re on the list!
             </h2>
-            <p className="text-xl text-muted-foreground mb-8">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-6 sm:mb-8">
               We&apos;ll notify you as soon as LeSearch AI is ready. Get ready to
               transform your research workflow.
             </p>
-            <p className="text-muted-foreground">
-              Follow us on {" "}
-              <a href="#" className="text-primary underline hover:opacity-80">
-                Twitter
+            <p className="text-sm sm:text-base text-muted-foreground">
+              Follow us on our{" "}
+              <a href="https://www.linkedin.com/company/lesearch-ai" className="text-primary underline hover:opacity-80">
+                LinkedIn
               </a>{" "}
               for updates
             </p>
@@ -83,27 +96,27 @@ const FinalCTA = () => {
   }
 
   return (
-    <section className="relative bg-background text-foreground py-24 md:py-32 overflow-hidden">
+    <section className="relative bg-background text-foreground py-16 sm:py-24 md:py-32 overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none">
         <div className="grid-pattern h-full w-full" />
       </div>
 
-      <div className="max-w-4xl mx-auto container-padding relative z-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12"
         >
-          <h2 className="text-4xl md:text-6xl font-black mb-6 text-primary">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-black mb-4 sm:mb-6 text-primary">
             Ready to revolutionize
             <br />
             your research?
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto">
             Join the waitlist and be among the first to experience the future of
             research workflows.
           </p>
@@ -115,25 +128,25 @@ const FinalCTA = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex justify-center items-center space-x-8 mb-12"
+          className="flex justify-center items-center space-x-4 sm:space-x-8 mb-8 sm:mb-12"
         >
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary">
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
               100+
             </div>
-            <div className="text-sm text-muted-foreground">Researchers</div>
+            <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Researchers</div>
           </div>
-          <div className="w-px h-12 bg-border"></div>
+          <div className="w-px h-8 sm:h-12 bg-border"></div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary">15+</div>
-            <div className="text-sm text-muted-foreground">Universities</div>
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">15+</div>
+            <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Universities</div>
           </div>
-          <div className="w-px h-12 bg-border"></div>
+          <div className="w-px h-8 sm:h-12 bg-border"></div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary">
+            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary">
               24/7
             </div>
-            <div className="text-sm text-muted-foreground">Available</div>
+            <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground">Available</div>
           </div>
         </motion.div>
 
@@ -145,13 +158,13 @@ const FinalCTA = () => {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto"
         >
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {/* Name */}
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-muted-foreground mb-2"
+                  className="block text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2"
                 >
                   Full Name *
                 </label>
@@ -162,8 +175,9 @@ const FinalCTA = () => {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-background border border-border rounded-lg text-sm sm:text-base text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                   placeholder="Your full name"
+                  suppressHydrationWarning
                 />
               </div>
 
@@ -171,7 +185,7 @@ const FinalCTA = () => {
               <div>
                 <label
                   htmlFor="email"
-                  className="block text-sm font-medium text-muted-foreground mb-2"
+                  className="block text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2"
                 >
                   Email Address *
                 </label>
@@ -182,18 +196,19 @@ const FinalCTA = () => {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-background border border-border rounded-lg text-sm sm:text-base text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                   placeholder="your@email.com"
+                  suppressHydrationWarning
                 />
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               {/* Role */}
               <div>
                 <label
                   htmlFor="role"
-                  className="block text-sm font-medium text-muted-foreground mb-2"
+                  className="block text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2"
                 >
                   Role *
                 </label>
@@ -203,7 +218,8 @@ const FinalCTA = () => {
                   required
                   value={formData.role}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-background border border-border rounded-lg text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  suppressHydrationWarning
                 >
                   <option value="" className="text-foreground bg-background">
                     Select your role
@@ -233,7 +249,7 @@ const FinalCTA = () => {
               <div>
                 <label
                   htmlFor="institution"
-                  className="block text-sm font-medium text-muted-foreground mb-2"
+                  className="block text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2"
                 >
                   Institution/Company
                 </label>
@@ -243,8 +259,9 @@ const FinalCTA = () => {
                   name="institution"
                   value={formData.institution}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-background border border-border rounded-lg text-sm sm:text-base text-foreground placeholder-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
                   placeholder="University or Company"
+                  suppressHydrationWarning
                 />
               </div>
             </div>
@@ -253,7 +270,7 @@ const FinalCTA = () => {
             <div>
               <label
                 htmlFor="feature"
-                className="block text-sm font-medium text-muted-foreground mb-2"
+                className="block text-xs sm:text-sm font-medium text-muted-foreground mb-1.5 sm:mb-2"
               >
                 Most Excited Feature
               </label>
@@ -262,7 +279,8 @@ const FinalCTA = () => {
                 name="feature"
                 value={formData.feature}
                 onChange={handleChange}
-                className="w-full px-4 py-3 bg-background border border-border rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-background border border-border rounded-lg text-sm sm:text-base text-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                suppressHydrationWarning
               >
                 <option value="" className="text-foreground bg-background">
                   What excites you most?
@@ -291,14 +309,14 @@ const FinalCTA = () => {
               disabled={isSubmitting}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full bg-primary text-primary-foreground py-4 px-8 rounded-lg font-semibold text-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
+              className="w-full bg-primary text-primary-foreground py-3 sm:py-4 px-6 sm:px-8 rounded-lg font-semibold text-base sm:text-lg hover:bg-primary/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-md"
             >
               {isSubmitting ? "Joining..." : "Join the Waitlist"}
             </motion.button>
           </form>
 
           {/* Privacy Note */}
-          <p className="text-center text-sm text-muted-foreground mt-6">
+          <p className="text-center text-xs sm:text-sm text-muted-foreground mt-4 sm:mt-6">
             We respect your privacy. Unsubscribe at any time.
           </p>
         </motion.div>
