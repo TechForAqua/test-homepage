@@ -2,13 +2,12 @@
 import Hero from "@/components/sections/Hero";
 import Problem from "@/components/sections/Problem";
 import Solution from "@/components/sections/Solution";
-import FinalCTA from "@/components/sections/FinalCTA";
 import Header from "@/components/Header";
-import Team from "@/components/sections/Team";
 import Features from "@/components/sections/Features";
 import Testimonials from "@/components/sections/Testimonials";
 import FAQ from "@/components/sections/FAQ";
 import { useEffect, useState } from "react";
+import Download from "@/components/sections/Download";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
@@ -26,11 +25,10 @@ export default function Home() {
       <Hero />
       <Problem />
       <Solution />
-      <Team />
-      <Features />
       <Testimonials />
-      <FinalCTA />
+      <Features />
       <FAQ />
+      <Download />
     </main>
   );
 }
