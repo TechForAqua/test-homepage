@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -194,8 +195,8 @@ const Solution = () => {
             Infinite possibilities.
           </h2>
           <p className="text-base sm:text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto px-2 sm:px-0">
-            LeSearch AI eliminates the friction between reading papers and
-            running code. Everything you need in one minimalist interface.
+            LeCode-R eliminates the friction between reading papers and running
+            code. Everything you need in one minimalist interface.
           </p>
         </motion.div>
 
@@ -255,7 +256,7 @@ const Solution = () => {
                       <span className="ml-3 sm:ml-4 text-[10px] sm:text-xs text-muted-foreground">LeSearch Terminal</span>
                     </div>
                     <div className="space-y-0.5 sm:space-y-1">
-                      <div className="text-green-500">$ lesearch run attention-paper</div>
+                      <div className="text-green-500">$ lecode-r run attention-paper</div>
                       <div className="text-muted-foreground">✓ Environment ready</div>
                       <div className="text-muted-foreground">✓ Dependencies installed</div>
                       <div className="text-green-500">$ python train.py</div>
@@ -292,7 +293,11 @@ const Solution = () => {
           <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
             Ready to transform your research workflow?
           </p>
-          <Button className="btn-secondary text-sm sm:text-base">Join the waitlist</Button>
+          <Link href="#download">
+            <Button className="btn-secondary text-sm sm:text-base">
+              See Download Options
+            </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

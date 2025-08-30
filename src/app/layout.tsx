@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { WaitlistProvider } from "@/contexts/WaitlistContext";
-import { WaitlistDialog } from "@/components/WaitlistDialog";
 import { Toaster } from "sonner";
 
 const inter = Inter({
@@ -18,9 +16,9 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "LeSearch AI - The Research Operating System",
+  title: "LeCode-R | From Paper to Code in Minutes",
   description:
-    "Read papers, extract insights, run code, and write ideas—all in one minimalist workspace. Less Searching, More Creating.",
+    "AI-powered tool to automatically run code from any research paper. Eliminate environment setup and dependency hell. Get started for free.",
 };
 
 export default function RootLayout({
@@ -39,11 +37,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <WaitlistProvider>
-            {children}
-            <WaitlistDialog />
-            <Toaster richColors />
-          </WaitlistProvider>
+          {children}
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

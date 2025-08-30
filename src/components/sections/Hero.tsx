@@ -6,63 +6,19 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ShinyButton } from "../magicui/shiny-button";
 import { Badge } from "../ui/badge";
-import { useWaitlist } from "@/contexts/WaitlistContext";
+import { heroSectionContent } from "@/lib/Newcomponents-data";
+import Link from "next/link";
+import { Github } from "lucide-react";
 
 const Hero = () => {
   const [terminalContent, setTerminalContent] = useState<
-    Array<{ type: string; text: string; delay: number; cursor?: boolean }>
+    Array<{ type: string; text: string; delay?: number; cursor?: boolean }>
   >([]);
-  const { openDialog } = useWaitlist();
 
-  const terminalSequence = useMemo(() => [
-    { type: "command", text: "$ lesearch", delay: 100 },
-    {
-      type: "output",
-      text: "LeSearch Terminal Agent v1.0.0 - Safe Sandbox Mode",
-      delay: 500,
-    },
-    { type: "output", text: "Ready to help with your research...", delay: 300 },
-    { type: "output", text: "", delay: 500 },
-    {
-      type: "command",
-      text: '$ ask "What does this authentication function do?"',
-      delay: 1000,
-    },
-    { type: "output", text: "Analyzing codebase...", delay: 800 },
-    { type: "output", text: "", delay: 200 },
-    { type: "command", text: "$ cat auth/middleware.py", delay: 500 },
-    {
-      type: "output",
-      text: `def verify_jwt_token(token: str) -> dict:
-    """Verify and decode JWT authentication token"""
-    try:
-        payload = jwt.decode(token, algorithms=["HS256"])
-        return payload
-    except jwt.ExpiredSignatureError:
-        raise AuthenticationError("Token has expired")`,
-      delay: 100,
-    },
-    { type: "output", text: "", delay: 800 },
-    { type: "output", text: "📊 Analysis:", delay: 400 },
-    {
-      type: "output",
-      text: "This function implements JWT (JSON Web Token) authentication:",
-      delay: 300,
-    },
-    {
-      type: "output",
-      text: "• Validates incoming JWT tokens using a secret key",
-      delay: 200,
-    },
-    { type: "output", text: "", delay: 400 },
-    {
-      type: "output",
-      text: "💡 Security considerations: Consider using RS256 for production",
-      delay: 300,
-    },
-    { type: "output", text: "", delay: 500 },
-    { type: "command", text: "$ ", delay: 0, cursor: true },
-  ], []);
+  const terminalSequence = useMemo(
+    () => heroSectionContent.terminalAnimation.sequence,
+    []
+  );
 
   const animateTerminal = useCallback(() => {
     let index = 0;
@@ -70,7 +26,8 @@ const Hero = () => {
       if (index < terminalSequence.length) {
         setTerminalContent((prev) => [...prev, terminalSequence[index]]);
         index++;
-        const nextDelay = terminalSequence[index - 1]?.delay || 300;
+        const nextDelay =
+          (terminalSequence[index - 1] as { delay?: number })?.delay || 300;
         setTimeout(animate, nextDelay);
       }
     };
@@ -110,22 +67,24 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <ShinyButton className="flex mb-8 mx-auto w-fit px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary border-primary/20">
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-                Early Access 2025
-              </ShinyButton>
+              <Link href={heroSectionContent.badge.link}>
+                <ShinyButton className="flex mb-8 mx-auto w-fit px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary border-primary/20">
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                  {heroSectionContent.badge.text}
+                </ShinyButton>
+              </Link>
             </motion.div>
 
             {/* Headline */}
@@ -135,9 +94,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.4 }}
             >
-              The Research
-              <br />
-              Operating System
+              {heroSectionContent.headline}
             </motion.h1>
             {/* Subheadline */}
             <motion.p
@@ -146,11 +103,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              Read papers, extract insights, run code, and write ideas—all in
-              one minimalist workspace.{" "}
-              <span className="font-bold text-primary">
-                Less Searching, More Creating.
-              </span>
+              {heroSectionContent.subheadline}
             </motion.p>
 
             {/* CTAs */}
@@ -160,31 +113,17 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
             >
-              <Button size="lg" className="px-8" onClick={openDialog}>
-                Join the waitlist
-              </Button>
-              <Button variant="outline" size="lg" className="px-8">
-                <svg
-                  className="w-5 h-5 mr-2"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.75"
-                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1.75"
-                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                Watch the demo
-              </Button>
+              <Link href={heroSectionContent.cta.primary.link}>
+                <Button size="lg" className="px-8">
+                  {heroSectionContent.cta.primary.text}
+                </Button>
+              </Link>
+              <Link href={heroSectionContent.cta.secondary.link}>
+                <Button variant="outline" size="lg" className="px-8">
+                  <Github className="w-5 h-5 mr-2" />
+                  {heroSectionContent.cta.secondary.text}
+                </Button>
+              </Link>
             </motion.div>
           </div>
 

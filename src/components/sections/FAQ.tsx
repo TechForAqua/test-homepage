@@ -4,35 +4,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { TextEffect } from "@/components/motion/text-effect";
+import { faqContent } from "@/lib/Newcomponents-data";
 
-const faqs = [
-  {
-    question: "How does LeSearch retrieve referenced papers?",
-    answer:
-      "LeSearch uses advanced AI algorithms to scan and analyze research papers, extracting references and automatically retrieving the full text when available. It accesses multiple academic databases and open-access repositories to find the most up-to-date versions of referenced papers.",
-  },
-  {
-    question: "What if a referenced paper isn't publicly available?",
-    answer:
-      "If a paper isn't publicly accessible, LeSearch will provide as much information as possible, including the abstract, publication details, and any available snippets. It also suggests alternative sources or related open-access papers that might contain similar information.",
-  },
-  {
-    question: "Can LeSearch understand papers in specialized fields?",
-    answer:
-      "Yes, LeSearch is trained on a vast array of academic literature across various disciplines. It can understand and analyze papers from highly specialized fields, including medicine, physics, computer science, and more. The AI continuously learns and updates its knowledge base to stay current with the latest research trends.",
-  },
-  {
-    question:
-      "How accurate are the answers when I ask questions about references?",
-    answer:
-      "LeSearch strives for high accuracy in its responses. It uses context-aware natural language processing to understand your questions and extract relevant information from the papers. While accuracy can vary depending on the complexity of the question, LeSearch typically provides highly reliable answers, always citing the specific sections of papers it references.",
-  },
-  {
-    question: "Is there a limit to how many papers I can analyze?",
-    answer:
-      "The number of papers you can analyze depends on your subscription plan. Free accounts can analyze up to 5 papers per month, while premium plans offer higher or unlimited analysis quotas. LeSearch also offers custom enterprise solutions for organizations with high-volume research needs.",
-  },
-];
+const faqs = faqContent;
 
 interface FAQItemProps {
   question: string;
