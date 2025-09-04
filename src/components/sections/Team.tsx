@@ -3,28 +3,10 @@ import Image from "next/image";
 
 const members = [
   {
-    name: "Harsh Shah",
-    role: "Co-Founder",
-    avatar: "/team/harsh-profile-pic.jpg",
-    link: "https://www.linkedin.com/in/connecthshah",
-  },
-  {
     name: "Arya Teja Rudraraju",
     role: "Co-Founder",
     avatar: "/team/arya-profile-pic.jpg",
     link: "https://www.linkedin.com/in/arya-teja-rudraraju",
-  },
-  {
-    name: "Gunjan Dhanuka",
-    role: "Founding Systems Engineer",
-    avatar: "/team/gunjan-profile-pic.png",
-    link: "https://www.linkedin.com/in/gunjan-dhanuka/",
-  },
-  {
-    name: "Rishi Shah",
-    role: "Founding ML Engineer",
-    avatar: "/team/rishi-profile-pic.png",
-    link: "https://www.linkedin.com/in/rishi-shah1001",
   },
   {
     name: "Ganesh",
